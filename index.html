@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RSVP • Cumpleaños</title>
+    <!-- Fuentes elegantes y modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --card-bg: rgba(18, 14, 28, 0.78);
+            --border-color: rgba(147, 51, 234, 0.35);
+            --text-primary: #ffffff;
+            --text-muted: #d0c9e2;
+            --accent-blue: #38bdf8;
+            --accent-violet: #a855f7;
+            --accent-pink: #ec4899;
+            --glow-color: rgba(168, 85, 247, 0.45);
+        }
+
+        body {
+            background-color: #05030a;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
+                radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.35) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+            background-attachment: fixed;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .pop-element {
+            position: absolute;
+            font-size: 3rem;
+            pointer-events: none;
+            animation: float 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px var(--accent-pink));
+            z-index: 1;
+        }
+
+        .pop-1 { top: 8%; left: 8%; }
+        .pop-2 { bottom: 8%; right: 8%; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-18px) rotate(10deg) scale(1.1); }
+        }
+
+        @media (max-width: 768px) {
+            .pop-element {
+                display: none;
+            }
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 40px var(--glow-color);
+            border-radius: 28px;
+            padding: 32px 22px;
+            max-width: 410px;
+            width: 100%;
+            box-sizing: border-box;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 10;
+            position: relative;
+        }
+
+        .badge-container {
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(236, 72, 153, 0.4);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            background: linear-gradient(135deg, #ffffff 20%, #f472b6 80%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .manifesto {
+            font-style: italic;
+            color: var(--accent-pink);
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+        }
+
+        p {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* CUENTA REGRESIVA */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
+        .countdown-box {
+            background: rgba(26, 20, 40, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 8px 4px;
+        }
+
+        .countdown-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* INFO DEL EVENTO */
+        .event-info {
+            background: rgba(26, 20, 40, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            font-size: 1.1rem;
+            margin-right: 10px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .info-text strong {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .map-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--accent-blue);
+            transition: all 0.2s ease;
+        }
+
+        .map-link:hover {
+            color: #7dd3fc;
+            border-bottom-style: solid;
+        }
+
+        /* BOTONES EXTRA (CALENDAR, SPOTIFY, PINTEREST) */
+        .extras-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .extra-btn {
+            background: rgba(26, 20, 40, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .extra-btn:hover {
+            background: rgba(35, 26, 56, 0.95);
+            border-color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        .extra-btn-full {
+            grid-column: span 2;
+        }
+
+        /* REGALOS / ALIAS */
+        .gift-box {
+            background: rgba(236, 72, 153, 0.08);
+            border: 1px dashed rgba(236, 72, 153, 0.4);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+
+        .gift-box p {
+            margin: 0 0 8px 0;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .alias-container {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(18, 14, 28, 0.9);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            padding: 6px 12px;
+            border-radius: 8px;
+            gap: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #f472b6;
+            cursor: pointer;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.75rem;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .copy-btn:hover {
+            color: #fff;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(168, 85, 247, 0.25);
+            margin: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(26, 20, 40, 0.9);
+            border: 1.5px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-primary);
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: #8c7fae;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
+            background: rgba(35, 26, 56, 0.95);
+        }
+
+        select option {
+            background: #181424;
+            color: var(--text-primary);
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-violet));
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            padding: 16px;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.45);
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        #mensaje-exito {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.12);
+            border: 1px solid rgba(74, 222, 128, 0.35);
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.4rem;
+            pointer-events: none;
+            animation: explode 0.8s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pop-element pop-1">🪩✨</div>
+    <div class="pop-element pop-2">🎵🥂</div>
+
+    <div class="container">
+        <div class="badge-container">
+            <span class="badge">Save The Date</span>
+        </div>
+        <h1>Celebración</h1>
+        <div class="manifesto">“Libertad absoluta para ser, reír y disfrutar sin mirar el reloj. Una noche para conectar y pasarla bien.”</div>
+
+        <!-- CUENTA REGRESIVA -->
+        <div class="countdown-grid">
+            <div class="countdown-box">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Min</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seg</span>
+            </div>
+        </div>
+
+        <!-- DETALLES DEL EVENTO -->
+        <div class="event-info">
+            <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div class="info-text">
+                    <strong>Ubicación</strong>
+                    <a href="https://maps.google.com/?q=Av.+Principal+1234+CABA" target="_blank" class="map-link">
+                        Salón "The Box" (Av. Principal 1234, CABA) ↗
+                    </a>
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">🕒</span>
+                <div class="info-text">
+                    <strong>Horario</strong>
+                    Sábado • 21:30 hs puntual
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">✨</span>
+                <div class="info-text">
+                    <strong>Dress Code</strong>
+                    Elegante / Pop Touch (Sumale un detalle brillante o neón)
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTONES EXTRA (CALENDAR, SPOTIFY, PINTEREST) -->
+        <div class="extras-grid">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumplea%C3%B1os+Pop&dates=20261114T003000Z/20261114T043000Z&details=Festejo+de+cumplea%C3%B1os.&location=Sal%C3%B3n+The+Box+CABA" target="_blank" class="extra-btn">
+                📅 Agendar
+            </a>
+            <a href="https://open.spotify.com" target="_blank" class="extra-btn">
+                🎶 Playlist
+            </a>
+            <a href="https://pinterest.com" target="_blank" class="extra-btn extra-btn-full">
+                🎨 Inspiración de Looks (Dress Code)
+            </a>
+        </div>
+
+        <!-- SECCIÓN DE REGALOS / LLUVIA DE SOBRES -->
+        <div class="gift-box">
+            <p>💌 Lluvia de Sobres / Regalos</p>
+            <span class="alias-container" onclick="copiarAlias()">
+                <span id="textoAlias">tu.alias.mp</span>
+                <button class="copy-btn" id="btnCopiar">Copiar</button>
+            </span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- FORMULARIO RSVP -->
+        <form id="rsvpForm">
+            <div class="form-group">
+                <label for="nombre">Nombre y Apellido</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+            </div>
+
+            <div class="form-group">
+                <label for="asistencia">Asistencia</label>
+                <select id="asistencia" name="asistencia">
+                    <option value="Sí, ahí estaré">Sí, ahí estaré 🔥</option>
+                    <option value="No podré asistir">No podré asistir 😢</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="restriccion">Restricción Alimentaria</label>
+                <input type="text" id="restriccion" name="restriccion" placeholder="Vegano, celíaco, ninguna, etc.">
+            </div>
+
+            <div class="form-group">
+                <label for="cancion">Canción sugerida</label>
+                <input type="text" id="cancion" name="cancion" placeholder="Artista y tema infaltable">
+            </div>
+
+            <button type="submit" id="btnEnviar">Confirmar Asistencia ✨</button>
+        </form>
+
+        <div id="mensaje-exito">
+            ¡Impecable! 🥂 Tu respuesta ya quedó guardada. ¡Nos vemos en la pista!
+        </div>
+    </div>
+
+    <script>
+        // MANTENÉ TU MISMA URL DE GOOGLE APPS SCRIPT AQUÍ
+        const URL_SCRIPT = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUÍ";
+
+        // CUENTA REGRESIVA (Definí la fecha de tu cumple acá: AAAA-MM-DDTHH:MM:SS)
+        const fechaEvento = new Date("2027-06-26T21:30:00").getTime();
+
+        const actualizarCountdown = setInterval(() => {
+            const ahora = new Date().getTime();
+            const diferencia = fechaEvento - ahora;
+
+            if (diferencia < 0) {
+                clearInterval(actualizarCountdown);
+                return;
+            }
+
+            document.getElementById("days").innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diferencia % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // FUNCIÓN PARA COPIAR ALIAS
+        function copiarAlias() {
+            const alias = document.getElementById("textoAlias").innerText;
+            navigator.clipboard.writeText(alias).then(() => {
+                const btn = document.getElementById("btnCopiar");
+                btn.innerText = "¡Copiado!";
+                setTimeout(() => btn.innerText = "Copiar", 2000);
+            });
+        }
+
+        // FORMULARIO Y GOOGLE SHEETS
+        const form = document.getElementById('rsvpForm');
+        const mensajeExito = document.getElementById('mensaje-exito');
+        const btnEnviar = document.getElementById('btnEnviar');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnEnviar.textContent = "Guardando...";
+            btnEnviar.disabled = true;
+
+            const emojis = ['✨', '💖', '🎵', '🪩', '⭐', '🔥'];
+            const rect = btnEnviar.getBoundingClientRect();
+            const originX = rect.left + rect.width / 2;
+            const originY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 80;
+                const targetX = Math.cos(angle) * distance;
+                const targetY = Math.sin(angle) * distance;
+
+                particle.style.left = `${originX}px`;
+                particle.style.top = `${originY}px`;
+                particle.style.setProperty('--x', `${targetX}px`);
+                particle.style.setProperty('--y', `${targetY}px`);
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 800);
+            }
+
+            let requestData = {
+                nombre: document.getElementById('nombre').value,
+                asistencia: document.getElementById('asistencia').value,
+                restriccion: document.getElementById('restriccion').value,
+                cancion: document.getElementById('cancion').value
+            };
+
+            fetch(URL_SCRIPT, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(() => {
+                form.style.display = 'none';
+                mensajeExito.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Hubo un error, intentalo de nuevo.');
+                btnEnviar.textContent = "Confirmar Asistencia ✨";
+                btnEnviar.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
