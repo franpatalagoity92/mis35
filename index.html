@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RSVP • Cumpleaños</title>
-    <!-- Fuentes elegantes y modernas -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>RSVP • Los 35 de Fran</title>
+    <!-- Fuentes elegantes y editoriales -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --card-bg: rgba(18, 14, 28, 0.78);
-            --border-color: rgba(147, 51, 234, 0.35);
-            --text-primary: #ffffff;
-            --text-muted: #d0c9e2;
-            --accent-blue: #38bdf8;
-            --accent-violet: #a855f7;
-            --accent-pink: #ec4899;
-            --glow-color: rgba(168, 85, 247, 0.45);
+            --bg-color: #060814;
+            --card-bg: rgba(13, 18, 30, 0.90);
+            --border-color: rgba(148, 163, 184, 0.25);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-silver: #e2e8f0;
+            --accent-violet: #c084fc;
+            --glow-color: rgba(192, 132, 252, 0.15);
         }
 
         body {
-            background-color: #05030a;
+            background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 10% 15%, rgba(236, 72, 153, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.35) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(147, 51, 234, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(13, 18, 30, 0.95) 0%, transparent 100%);
             background-attachment: fixed;
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text-primary);
@@ -38,35 +38,12 @@
             box-sizing: border-box;
         }
 
-        .pop-element {
-            position: absolute;
-            font-size: 3rem;
-            pointer-events: none;
-            animation: float 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 25px var(--accent-pink));
-            z-index: 1;
-        }
-
-        .pop-1 { top: 8%; left: 8%; }
-        .pop-2 { bottom: 8%; right: 8%; animation-delay: 2.5s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            50% { transform: translateY(-18px) rotate(10deg) scale(1.1); }
-        }
-
-        @media (max-width: 768px) {
-            .pop-element {
-                display: none;
-            }
-        }
-
         .container {
             background: var(--card-bg);
-            border: 1.5px solid var(--border-color);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 40px var(--glow-color);
-            border-radius: 28px;
-            padding: 32px 22px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85), 0 0 35px var(--glow-color);
+            border-radius: 24px;
+            padding: 40px 24px;
             max-width: 410px;
             width: 100%;
             box-sizing: border-box;
@@ -74,6 +51,134 @@
             -webkit-backdrop-filter: blur(20px);
             z-index: 10;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* REFLECTORES DE ESCENARIO SUPERIORES Y LATERALES */
+        .stage-lights-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .stage-truss {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #1e293b, #c084fc, #1e293b);
+            box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+        }
+
+        /* Haces superiores */
+        .beam {
+            position: absolute;
+            top: 6px;
+            width: 75px;
+            height: 200px;
+            clip-path: polygon(40% 0%, 60% 0%, 90% 100%, 10% 100%);
+            transform-origin: top center;
+            filter: blur(5px);
+        }
+
+        .beam-1 { left: 5%; background: linear-gradient(180deg, rgba(56, 189, 248, 0.45) 0%, rgba(56, 189, 248, 0.03) 70%, transparent 100%); animation: beamSway1 6s ease-in-out infinite alternate; }
+        .beam-2 { left: 28%; background: linear-gradient(180deg, rgba(192, 132, 252, 0.45) 0%, rgba(192, 132, 252, 0.03) 70%, transparent 100%); animation: beamSway2 7s ease-in-out infinite alternate; }
+        .beam-3 { right: 28%; background: linear-gradient(180deg, rgba(236, 72, 153, 0.4) 0%, rgba(236, 72, 153, 0.03) 70%, transparent 100%); animation: beamSway1 8s ease-in-out infinite alternate; }
+        .beam-4 { right: 5%; background: linear-gradient(180deg, rgba(52, 211, 153, 0.35) 0%, rgba(52, 211, 153, 0.03) 70%, transparent 100%); animation: beamSway2 6.5s ease-in-out infinite alternate; }
+
+        @keyframes beamSway1 {
+            0% { transform: rotate(-10deg) scaleX(0.9); opacity: 0.4; }
+            100% { transform: rotate(10deg) scaleX(1.1); opacity: 0.75; }
+        }
+
+        @keyframes beamSway2 {
+            0% { transform: rotate(12deg) scaleX(1); opacity: 0.7; }
+            100% { transform: rotate(-12deg) scaleX(0.8); opacity: 0.3; }
+        }
+
+        /* Haces laterales independientes */
+        .side-spot {
+            position: absolute;
+            width: 140px;
+            height: 220px;
+            filter: blur(10px);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+        }
+
+        .side-spot-left-top {
+            top: 25%;
+            left: -30px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0.02) 100%);
+            transform: rotate(45deg);
+            animation: spotPulse1 5s ease-in-out infinite alternate;
+        }
+
+        .side-spot-left-bottom {
+            top: 60%;
+            left: -30px;
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.4) 0%, rgba(192, 132, 252, 0.02) 100%);
+            transform: rotate(35deg);
+            animation: spotPulse2 6s ease-in-out infinite alternate;
+        }
+
+        .side-spot-right-top {
+            top: 35%;
+            right: -30px;
+            background: linear-gradient(225deg, rgba(236, 72, 153, 0.38) 0%, rgba(236, 72, 153, 0.02) 100%);
+            transform: rotate(-45deg);
+            animation: spotPulse2 5.5s ease-in-out infinite alternate;
+        }
+
+        .side-spot-right-bottom {
+            top: 70%;
+            right: -30px;
+            background: linear-gradient(225deg, rgba(56, 189, 248, 0.38) 0%, rgba(56, 189, 248, 0.02) 100%);
+            transform: rotate(-35deg);
+            animation: spotPulse1 4.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes spotPulse1 {
+            0% { opacity: 0.3; transform: rotate(45deg) scale(0.9); }
+            100% { opacity: 0.8; transform: rotate(50deg) scale(1.1); }
+        }
+
+        @keyframes spotPulse2 {
+            0% { opacity: 0.4; transform: rotate(-45deg) scale(1); }
+            100% { opacity: 0.85; transform: rotate(-40deg) scale(1.15); }
+        }
+
+        /* ÁREA DEL ENCABEZADO */
+        .header-luxe-area {
+            position: relative;
+            text-align: center;
+            padding: 16px 0;
+            z-index: 2;
+        }
+
+        /* BOLA DE BOLICHE ÚNICA SOBRE EL TÍTULO */
+        .header-disco-ball {
+            font-size: 2rem;
+            margin-bottom: 6px;
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(192, 132, 252, 0.8));
+            animation: rotateBall 6s linear infinite, floatBall 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes rotateBall {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.08); filter: drop-shadow(0 0 18px rgba(192, 132, 252, 1)); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes floatBall {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-5px); }
         }
 
         .badge-container {
@@ -82,24 +187,24 @@
 
         .badge {
             display: inline-block;
-            background: rgba(236, 72, 153, 0.2);
-            color: #f472b6;
-            font-size: 0.72rem;
-            font-weight: 700;
+            background: rgba(192, 132, 252, 0.1);
+            color: var(--accent-silver);
+            font-size: 0.7rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 6px 14px;
+            letter-spacing: 3px;
+            padding: 6px 16px;
             border-radius: 20px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(236, 72, 153, 0.4);
+            margin-bottom: 14px;
+            border: 1px solid rgba(192, 132, 252, 0.3);
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin: 0 0 8px 0;
-            background: linear-gradient(135deg, #ffffff 20%, #f472b6 80%, #38bdf8 100%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-silver) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
@@ -107,23 +212,25 @@
         }
 
         .manifesto {
+            font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            color: var(--accent-pink);
+            color: var(--text-muted);
             text-align: center;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 0.2px;
+            font-size: 1.05rem;
+            margin-bottom: 22px;
             line-height: 1.4;
         }
 
-        p {
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.92rem;
-            font-weight: 400;
-            line-height: 1.5;
+        /* EFECTO DE APARICIÓN PROGRESIVA (CASCADA) */
+        .reveal-block {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-block.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* CUENTA REGRESIVA */
@@ -131,46 +238,59 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .countdown-box {
-            background: rgba(26, 20, 40, 0.9);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
+            background: rgba(10, 14, 24, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
             padding: 8px 4px;
         }
 
         .countdown-number {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-pink);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-silver);
             display: block;
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .countdown-label {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
         }
 
-        /* INFO DEL EVENTO */
-        .event-info {
-            background: rgba(26, 20, 40, 0.85);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 20px;
+        /* CONTENEDOR DE SECCIONES */
+        .section-box {
+            background: rgba(10, 14, 24, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 18px;
             text-align: left;
+        }
+
+        .section-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-silver);
+            margin-bottom: 14px;
+            font-weight: 600;
+            text-align: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+            padding-bottom: 8px;
         }
 
         .info-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 14px;
-            font-size: 0.88rem;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
             color: var(--text-primary);
         }
 
@@ -179,52 +299,146 @@
         }
 
         .info-icon {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-right: 10px;
-            min-width: 24px;
+            min-width: 22px;
             text-align: center;
         }
 
         .info-text strong {
             display: block;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
             margin-bottom: 2px;
         }
 
         .map-link {
-            color: var(--accent-blue);
+            color: var(--accent-silver);
             text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px dashed var(--accent-blue);
+            font-weight: 500;
+            border-bottom: 1px dashed rgba(226, 232, 240, 0.4);
             transition: all 0.2s ease;
         }
 
         .map-link:hover {
-            color: #7dd3fc;
+            color: #fff;
             border-bottom-style: solid;
         }
 
-        /* BOTONES EXTRA (CALENDAR, SPOTIFY, PINTEREST) */
+        /* HITOS Y TAREAS */
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-icon {
+            font-size: 1rem;
+            margin-right: 10px;
+            min-width: 22px;
+            text-align: center;
+        }
+
+        .timeline-content strong {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--accent-silver);
+            margin-bottom: 2px;
+        }
+
+        .timeline-content span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .completed-task {
+            opacity: 0.5;
+            text-decoration: line-through;
+            text-decoration-color: var(--accent-silver);
+        }
+
+        /* SECCIÓN SCROLLABLE Falsa CON BARRA VISIBLE */
+        .scrollable-mystery-box {
+            position: relative;
+            max-height: 125px;
+            overflow-y: auto;
+            padding-right: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-violet) rgba(148, 163, 184, 0.1);
+        }
+
+        /* Estilo barra de desplazamiento webkit (Chrome, Safari, Edge) */
+        .scrollable-mystery-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollable-mystery-box::-webkit-scrollbar-track {
+            background: rgba(148, 163, 184, 0.08);
+            border-radius: 4px;
+        }
+
+        .scrollable-mystery-box::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-violet), #38bdf8);
+            border-radius: 4px;
+        }
+
+        /* ESTILO LLAMATIVO CON PULSO PARA "AHORA MISMO" */
+        .urgent-highlight {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.3), rgba(56, 189, 248, 0.15));
+            border: 1px solid rgba(192, 132, 252, 0.5);
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            animation: pulseGlow 1.8s ease-in-out infinite;
+            box-shadow: 0 0 12px rgba(192, 132, 252, 0.3);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(192, 132, 252, 0.3); }
+            50% { opacity: 0.75; transform: scale(1.03); box-shadow: 0 0 18px rgba(192, 132, 252, 0.6); }
+        }
+
+        .blur-line {
+            filter: blur(5px);
+            user-select: none;
+            opacity: 0.7;
+            display: inline-block;
+            background: rgba(192, 132, 252, 0.2);
+            color: transparent;
+            border-radius: 4px;
+            padding: 0 8px;
+        }
+
+        /* BOTONES EXTRA */
         .extras-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .extra-btn {
-            background: rgba(26, 20, 40, 0.9);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
-            padding: 10px;
+            background: rgba(10, 14, 24, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 10px;
+            padding: 12px 10px;
             text-align: center;
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,43 +447,39 @@
         }
 
         .extra-btn:hover {
-            background: rgba(35, 26, 56, 0.95);
-            border-color: var(--accent-pink);
+            background: rgba(20, 26, 44, 0.95);
+            border-color: var(--accent-silver);
             transform: translateY(-2px);
         }
 
-        .extra-btn-full {
-            grid-column: span 2;
-        }
-
-        /* REGALOS / ALIAS */
+        /* REGALOS / LLUVIA DE SOBRES */
         .gift-box {
-            background: rgba(236, 72, 153, 0.08);
-            border: 1px dashed rgba(236, 72, 153, 0.4);
-            border-radius: 14px;
+            background: rgba(192, 132, 252, 0.04);
+            border: 1px dashed rgba(192, 132, 252, 0.3);
+            border-radius: 12px;
             padding: 14px;
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 0.85rem;
+            margin-bottom: 18px;
+            font-size: 0.82rem;
         }
 
         .gift-box p {
             margin: 0 0 8px 0;
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .alias-container {
             display: inline-flex;
             align-items: center;
-            background: rgba(18, 14, 28, 0.9);
-            border: 1px solid rgba(236, 72, 153, 0.5);
+            background: rgba(6, 8, 16, 0.9);
+            border: 1px solid rgba(192, 132, 252, 0.4);
             padding: 6px 12px;
             border-radius: 8px;
             gap: 8px;
             font-family: monospace;
-            font-size: 0.9rem;
-            color: #f472b6;
+            font-size: 0.85rem;
+            color: var(--accent-silver);
             cursor: pointer;
         }
 
@@ -278,7 +488,7 @@
             border: none;
             color: var(--text-muted);
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             padding: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
@@ -289,33 +499,33 @@
 
         .divider {
             height: 1px;
-            background: rgba(168, 85, 247, 0.25);
-            margin: 20px 0;
+            background: var(--border-color);
+            margin: 15px 0;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             text-align: left;
         }
 
         label {
             display: block;
-            font-weight: 700;
-            font-size: 0.75rem;
+            font-weight: 600;
+            font-size: 0.72rem;
             margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
         }
 
         input, select {
             width: 100%;
-            padding: 14px 16px;
-            background: rgba(26, 20, 40, 0.9);
-            border: 1.5px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px;
+            padding: 12px 15px;
+            background: rgba(10, 14, 24, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 10px;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-primary);
             box-sizing: border-box;
             outline: none;
@@ -323,54 +533,110 @@
         }
 
         input::placeholder {
-            color: #8c7fae;
+            color: #626a7c;
         }
 
         input:focus, select:focus {
-            border-color: var(--accent-pink);
-            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
-            background: rgba(35, 26, 56, 0.95);
+            border-color: var(--accent-silver);
+            box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.2);
+            background: rgba(18, 24, 40, 0.95);
         }
 
         select option {
-            background: #181424;
+            background: #0d121e;
             color: var(--text-primary);
         }
 
+        /* BOTÓN PRINCIPAL DE ENVÍO EN PLATEADO METÁLICO */
         button[type="submit"] {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-violet));
-            color: #fff;
+            position: relative;
+            background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+            color: #060814;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            padding: 16px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            padding: 15px;
             width: 100%;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.45);
-            margin-top: 10px;
-            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(226, 232, 240, 0.25);
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            overflow: hidden;
         }
 
         button[type="submit"]:active {
             transform: scale(0.98);
         }
 
+        .btn-loading-content {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .pulse-loader {
+            position: relative;
+            width: 18px;
+            height: 18px;
+            background: #060814;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pulse-loader::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #060814;
+            animation: pulseWave 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        @keyframes pulseWave {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        /* MENSAJE DE ÉXITO PERSONALIZADO */
         #mensaje-exito {
             display: none;
-            margin-top: 20px;
+            margin-top: 10px;
             text-align: center;
-            font-weight: 600;
-            color: #4ade80;
-            background: rgba(74, 222, 128, 0.12);
-            border: 1px solid rgba(74, 222, 128, 0.35);
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .success-card {
+            background: rgba(10, 14, 24, 0.95);
+            border: 1.5px solid var(--accent-silver);
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.2);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .success-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--accent-silver);
+            font-size: 1.8rem;
+            margin: 0 0 12px 0;
+        }
+
+        .success-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--text-primary);
             line-height: 1.5;
-            animation: fadeIn 0.4s ease forwards;
+            margin: 0;
         }
 
         @keyframes fadeIn {
@@ -380,7 +646,7 @@
 
         .particle {
             position: absolute;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             pointer-events: none;
             animation: explode 0.8s ease-out forwards;
             z-index: 100;
@@ -388,123 +654,234 @@
 
         @keyframes explode {
             0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)) scale(0.5); opacity: 0; }
+            100% { transform: translate(var(--x), var(--y)) scale(0.4); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="pop-element pop-1">🪩✨</div>
-    <div class="pop-element pop-2">🎵🥂</div>
-
     <div class="container">
-        <div class="badge-container">
-            <span class="badge">Save The Date</span>
-        </div>
-        <h1>Celebración</h1>
-        <div class="manifesto">“Libertad absoluta para ser, reír y disfrutar sin mirar el reloj. Una noche para conectar y pasarla bien.”</div>
-
-        <!-- CUENTA REGRESIVA -->
-        <div class="countdown-grid">
-            <div class="countdown-box">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Días</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Horas</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Min</span>
-            </div>
-            <div class="countdown-box">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seg</span>
-            </div>
+        <!-- REFLECTORES DE ESCENARIO SUPERIORES Y LATERALES -->
+        <div class="stage-lights-frame">
+            <div class="stage-truss"></div>
+            <!-- Haces Superiores -->
+            <div class="beam beam-1"></div>
+            <div class="beam beam-2"></div>
+            <div class="beam beam-3"></div>
+            <div class="beam beam-4"></div>
+            <!-- Haces Laterales Independientes -->
+            <div class="side-spot side-spot-left-top"></div>
+            <div class="side-spot side-spot-left-bottom"></div>
+            <div class="side-spot side-spot-right-top"></div>
+            <div class="side-spot side-spot-right-bottom"></div>
         </div>
 
-        <!-- DETALLES DEL EVENTO -->
-        <div class="event-info">
-            <div class="info-item">
-                <span class="info-icon">📍</span>
-                <div class="info-text">
-                    <strong>Ubicación</strong>
-                    <a href="https://maps.google.com/?q=Av.+Principal+1234+CABA" target="_blank" class="map-link">
-                        Salón "The Box" (Av. Principal 1234, CABA) ↗
-                    </a>
+        <!-- BLOQUE 1: TÍTULO, BOLA DE BOLICHE Y MANIFIESTO -->
+        <div class="reveal-block visible">
+            <div class="header-luxe-area">
+                <div class="header-disco-ball">🪩</div>
+
+                <div class="badge-container">
+                    <span class="badge" id="badgeText">Exclusive Invitation</span>
                 </div>
+                <h1>Los 35 de Fran</h1>
             </div>
-            <div class="info-item">
-                <span class="info-icon">🕒</span>
-                <div class="info-text">
-                    <strong>Horario</strong>
-                    Sábado • 21:30 hs puntual
+            <div class="manifesto">“Una noche de celebración, buenos tragos y charlas memorables. Disfrutemos el momento.”</div>
+        </div>
+
+        <!-- BLOQUE 2: CUENTA REGRESIVA -->
+        <div class="reveal-block" data-delay="600">
+            <div class="countdown-grid">
+                <div class="countdown-box">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Días</span>
                 </div>
-            </div>
-            <div class="info-item">
-                <span class="info-icon">✨</span>
-                <div class="info-text">
-                    <strong>Dress Code</strong>
-                    Elegante / Pop Touch (Sumale un detalle brillante o neón)
+                <div class="countdown-box">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seg</span>
                 </div>
             </div>
         </div>
 
-        <!-- BOTONES EXTRA (CALENDAR, SPOTIFY, PINTEREST) -->
-        <div class="extras-grid">
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumplea%C3%B1os+Pop&dates=20261114T003000Z/20261114T043000Z&details=Festejo+de+cumplea%C3%B1os.&location=Sal%C3%B3n+The+Box+CABA" target="_blank" class="extra-btn">
-                📅 Agendar
-            </a>
-            <a href="https://open.spotify.com" target="_blank" class="extra-btn">
-                🎶 Playlist
-            </a>
-            <a href="https://pinterest.com" target="_blank" class="extra-btn extra-btn-full">
-                🎨 Inspiración de Looks (Dress Code)
-            </a>
+        <!-- SECCIÓN 1: INFORMACIÓN CLAVE DEL EVENTO -->
+        <div class="reveal-block" data-delay="1000">
+            <div class="section-box">
+                <div class="section-title">📍 Información Clave del Evento</div>
+
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <div class="info-text">
+                        <strong>Ubicación</strong>
+                        <a href="https://maps.google.com/?q=CABA" target="_blank" class="map-link">
+                            Salón Exclusivo (CABA) ↗
+                        </a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon">🕒</span>
+                    <div class="info-text">
+                        <strong>Horario</strong>
+                        Sábado 26 de junio de 2027 • 21:00 hs puntual
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-icon">✨</span>
+                    <div class="info-text">
+                        <strong>Dress Code</strong>
+                        Smart Casual / Elegant
+                    </div>
+                </div>
+            </div>
+
+            <div class="extras-grid">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Los+35+de+Fran&dates=20270626T210000/20270627T020000&details=Festejo+exclusivo.&location=CABA" target="_blank" class="extra-btn">
+                    📅 Agendar en Google Calendar
+                </a>
+                <a href="https://pinterest.com" target="_blank" class="extra-btn">
+                    👔 Inspiración de Looks (Dress Code)
+                </a>
+            </div>
         </div>
 
-        <!-- SECCIÓN DE REGALOS / LLUVIA DE SOBRES -->
-        <div class="gift-box">
-            <p>💌 Lluvia de Sobres / Regalos</p>
-            <span class="alias-container" onclick="copiarAlias()">
-                <span id="textoAlias">tu.alias.mp</span>
-                <button class="copy-btn" id="btnCopiar">Copiar</button>
-            </span>
+        <!-- SECCIÓN 2: PREVIA AL EVENTO -->
+        <div class="reveal-block" data-delay="1400">
+            <div class="section-box">
+                <div class="section-title">✨ Previa al Evento</div>
+
+                <div class="timeline-item">
+                    <span class="timeline-icon">✅</span>
+                    <div class="timeline-content completed-task">
+                        <strong>Save The Date</strong>
+                        <span>Reserva de fecha realizada con éxito</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-icon">✉️</span>
+                    <div class="timeline-content">
+                        <strong>Invitación formal</strong>
+                        <span><b class="urgent-highlight">AHORA MISMO ❗</b></span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="divider"></div>
+        <!-- SECCIÓN 3: SOBRE ESE DÍA -->
+        <div class="reveal-block" data-delay="1800">
+            <div class="section-box">
+                <div class="section-title">🍸 Sobre ese día</div>
 
-        <!-- FORMULARIO RSVP -->
-        <form id="rsvpForm">
-            <div class="form-group">
-                <label for="nombre">Nombre y Apellido</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                <!-- CONTENEDOR CON SCROLL FALSO Y BARRA VISIBLE -->
+                <div class="scrollable-mystery-box">
+                    <div class="timeline-item">
+                        <span class="timeline-icon">🥂</span>
+                        <div class="timeline-content">
+                            <strong>Recepción</strong>
+                            <span>Cóctel de bienvenida, música ambiental y acreditación</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-icon">❓</span>
+                        <div class="timeline-content">
+                            <strong>Agenda Secreta</strong>
+                            <span><span class="blur-line">¿Posta? ¿Pensaste que iba a ser tan fácil?</span></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-icon">🔒</span>
+                        <div class="timeline-content">
+                            <strong>Bloque Bloqueado</strong>
+                            <span><span class="blur-line">¿Posta? ¿Pensaste que iba a ser tan fácil?</span></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-icon">🎶</span>
+                        <div class="timeline-content">
+                            <strong>Pista Principal</strong>
+                            <span><span class="blur-line">¿Posta? ¿Pensaste que iba a ser tan fácil?</span></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-icon">⭐</span>
+                        <div class="timeline-content">
+                            <strong>Gran Cierre</strong>
+                            <span><span class="blur-line">¿Posta? ¿Pensaste que iba a ser tan fácil?</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE 4: REGALOS / LLUVIA DE SOBRES -->
+        <div class="reveal-block" data-delay="2200">
+            <div class="gift-box">
+                <p>💌 Lluvia de Sobres / Regalos</p>
+                <span class="alias-container" onclick="copiarAlias()">
+                    <span id="textoAlias">tu.alias.mp</span>
+                    <button class="copy-btn" id="btnCopiar">Copiar</button>
+                </span>
             </div>
 
-            <div class="form-group">
-                <label for="asistencia">Asistencia</label>
-                <select id="asistencia" name="asistencia">
-                    <option value="Sí, ahí estaré">Sí, ahí estaré 🔥</option>
-                    <option value="No podré asistir">No podré asistir 😢</option>
-                </select>
-            </div>
+            <div class="divider"></div>
+        </div>
 
-            <div class="form-group">
-                <label for="restriccion">Restricción Alimentaria</label>
-                <input type="text" id="restriccion" name="restriccion" placeholder="Vegano, celíaco, ninguna, etc.">
-            </div>
+        <!-- BLOQUE 5: FORMULARIO RSVP -->
+        <div class="reveal-block" data-delay="2600">
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                </div>
 
-            <div class="form-group">
-                <label for="cancion">Canción sugerida</label>
-                <input type="text" id="cancion" name="cancion" placeholder="Artista y tema infaltable">
-            </div>
+                <div class="form-group">
+                    <label for="asistencia">Asistencia</label>
+                    <select id="asistencia" name="asistencia">
+                        <option value="Sí, estaré presente">Sí, estaré presente 🥂</option>
+                        <option value="No podré asistir">No podré asistir</option>
+                    </select>
+                </div>
 
-            <button type="submit" id="btnEnviar">Confirmar Asistencia ✨</button>
-        </form>
+                <div class="form-group">
+                    <label for="restriccion">Restricción Alimentaria</label>
+                    <input type="text" id="restriccion" name="restriccion" placeholder="Vegano, celíaco, ninguna, etc.">
+                </div>
 
+                <div class="form-group">
+                    <label for="cancion">Canción sugerida</label>
+                    <input type="text" id="cancion" name="cancion" placeholder="Artista y tema sugerido">
+                </div>
+
+                <!-- BOTÓN PRINCIPAL DE ENVÍO -->
+                <button type="submit" id="btnEnviar">
+                    <span id="btnText">Confirmar Asistencia</span>
+                    <div class="btn-loading-content" id="btnLoadingContent">
+                        <div class="pulse-loader"></div>
+                        <span id="loadingMessage">Procesando asistencia...</span>
+                    </div>
+                </button>
+            </form>
+        </div>
+
+        <!-- MENSAJE DE ÉXITO PERSONALIZADO -->
         <div id="mensaje-exito">
-            ¡Impecable! 🥂 Tu respuesta ya quedó guardada. ¡Nos vemos en la pista!
+            <div class="success-card">
+                <h3>¡Confirmado! 🥂</h3>
+                <p id="textoRespuestaPersonalizado"></p>
+            </div>
         </div>
     </div>
 
@@ -512,8 +889,29 @@
         // MANTENÉ TU MISMA URL DE GOOGLE APPS SCRIPT AQUÍ
         const URL_SCRIPT = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUÍ";
 
-        // CUENTA REGRESIVA (Definí la fecha de tu cumple acá: AAAA-MM-DDTHH:MM:SS)
-        const fechaEvento = new Date("2027-06-26T21:30:00").getTime();
+        // DETECTAR NOMBRE DESDE LA URL (EJ: ?nombre=Juan)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nombreInvitado = urlParams.get('nombre');
+
+            if (nombreInvitado) {
+                const nombreLimpio = decodeURIComponent(nombreInvitado);
+                document.getElementById('badgeText').innerText = `Hola, ${nombreLimpio}`;
+                document.getElementById('nombre').value = nombreLimpio;
+            }
+
+            // Animación de aparición en cascada automática
+            const bloques = document.querySelectorAll('.reveal-block');
+            bloques.forEach(bloque => {
+                const delay = parseInt(bloque.getAttribute('data-delay')) || 0;
+                setTimeout(() => {
+                    bloque.classList.add('visible');
+                }, delay);
+            });
+        });
+
+        // CUENTA REGRESIVA ACTUALIZADA AL 26 DE JUNIO DE 2027 A LAS 21:00 HS
+        const fechaEvento = new Date("2027-06-26T21:00:00").getTime();
 
         const actualizarCountdown = setInterval(() => {
             const ahora = new Date().getTime();
@@ -540,64 +938,119 @@
             });
         }
 
-        // FORMULARIO Y GOOGLE SHEETS
-        const form = document.getElementById('rsvpForm');
-        const mensajeExito = document.getElementById('mensaje-exito');
-        const btnEnviar = document.getElementById('btnEnviar');
+        // FUNCIÓN DE EXPLOSIÓN DE EMOJIS A PANTALLA COMPLETA
+        function lanzarFestejoPantallaCompleta() {
+            const emojis = ['✨', '🍸', '🥂', '⭐', '🍾', '🎉', '💫', '🪩'];
+            const centroX = window.innerWidth / 2;
+            const centroY = window.innerHeight / 2;
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            btnEnviar.textContent = "Guardando...";
-            btnEnviar.disabled = true;
-
-            const emojis = ['✨', '💖', '🎵', '🪩', '⭐', '🔥'];
-            const rect = btnEnviar.getBoundingClientRect();
-            const originX = rect.left + rect.width / 2;
-            const originY = rect.top + rect.height / 2;
-
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                 
                 const angle = Math.random() * Math.PI * 2;
-                const distance = 50 + Math.random() * 80;
+                const distance = 150 + Math.random() * (window.innerWidth / 2);
                 const targetX = Math.cos(angle) * distance;
                 const targetY = Math.sin(angle) * distance;
 
-                particle.style.left = `${originX}px`;
-                particle.style.top = `${originY}px`;
+                particle.style.left = `${centroX}px`;
+                particle.style.top = `${centroY}px`;
+                particle.style.fontSize = `${1.5 + Math.random() * 1.5}rem`;
                 particle.style.setProperty('--x', `${targetX}px`);
                 particle.style.setProperty('--y', `${targetY}px`);
+                particle.style.animationDuration = `${0.8 + Math.random() * 0.6}s`;
 
                 document.body.appendChild(particle);
-                setTimeout(() => particle.remove(), 800);
+                setTimeout(() => particle.remove(), 1400);
             }
+        }
+
+        // FORMULARIO Y GOOGLE SHEETS
+        const form = document.getElementById('rsvpForm');
+        const mensajeExito = document.getElementById('mensaje-exito');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const btnText = document.getElementById('btnText');
+        const btnLoadingContent = document.getElementById('btnLoadingContent');
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const nombreIngresado = document.getElementById('nombre').value;
+            const asistenciaSeleccionada = document.getElementById('asistencia').value;
+
+            // Convertimos el botón en barra interactiva de carga
+            btnText.style.display = 'none';
+            btnLoadingContent.style.display = 'flex';
+            btnEnviar.disabled = true;
+            btnEnviar.style.opacity = '0.9';
+
+            // Frases divertidas rotando durante la espera
+            const frasesDivertidas = [
+                "Preparando la pista... 🪩",
+                "Guardando tu respuesta... 🍸",
+                "Agregando tus temas... 🎶",
+                "¡Casi listos para el brindis! 🥂"
+            ];
+            
+            let fraseIndex = 0;
+            const rotarFrases = setInterval(() => {
+                fraseIndex = (fraseIndex + 1) % frasesDivertidas.length;
+                loadingMessage.textContent = frasesDivertidas[fraseIndex];
+            }, 900);
 
             let requestData = {
-                nombre: document.getElementById('nombre').value,
-                asistencia: document.getElementById('asistencia').value,
+                nombre: nombreIngresado,
+                asistencia: asistenciaSeleccionada,
                 restriccion: document.getElementById('restriccion').value,
                 cancion: document.getElementById('cancion').value
             };
 
-            fetch(URL_SCRIPT, {
+            // Enviamos los datos a Google Sheets
+            let envioGoogle = fetch(URL_SCRIPT, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestData)
-            })
+            });
+
+            // Mantenemos la espera mínima de 3.8 segundos para disfrutar de la animación y las frases
+            let esperaMinima = new Promise(resolve => setTimeout(resolve, 3800));
+
+            Promise.all([envioGoogle, esperaMinima])
             .then(() => {
+                clearInterval(rotarFrases);
+                
+                // Generamos el texto dinámico exacto que solicitaste
+                const pTexto = document.getElementById('textoRespuestaPersonalizado');
+                if (asistenciaSeleccionada.includes("Sí")) {
+                    pTexto.innerHTML = `Buenísimo, <strong>${nombreIngresado}</strong>, te espero el sábado 26 de junio de 2027 para que juntos lo demos todo y más! ✨`;
+                } else {
+                    pTexto.innerHTML = `Gracias por avisarnos, <strong>${nombreIngresado}</strong>. Lamentamos que no puedas acompañarnos en esta ocasión. ¡Te tendremos presente!`;
+                }
+
+                // Ocultamos la tarjeta del formulario y mostramos el éxito
+                document.querySelector('.container').style.padding = '40px 24px';
                 form.style.display = 'none';
+                
+                // Ocultamos los bloques superiores para dejar el foco en el mensaje
+                document.querySelectorAll('.reveal-block').forEach(el => el.style.display = 'none');
                 mensajeExito.style.display = 'block';
+
+                // Disparamos la fiesta a pantalla completa
+                lanzarFestejoPantallaCompleta();
             })
             .catch(error => {
+                clearInterval(rotarFrases);
                 console.error('Error!', error.message);
                 alert('Hubo un error, intentalo de nuevo.');
-                btnEnviar.textContent = "Confirmar Asistencia ✨";
+                btnText.style.display = 'inline';
+                btnLoadingContent.style.display = 'none';
                 btnEnviar.disabled = false;
+                btnEnviar.style.opacity = '1';
             });
         });
     </script>
